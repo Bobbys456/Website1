@@ -9,18 +9,16 @@ function input(fromButton)
 {
     if(firstRun)
     {
-      currentTotal += fromButton * Math.pow(10, count);
+      currentTotal = (currentTotal * 10) + fromButton;
       display(currentTotal) 
       count++;
     }
-
     else
     {
-      inputNum = fromButton * Math.pow(10, count);
+      inputNum = (inputNum * 10) + fromButton;
       display(inputNum); 
       count++;
     }
-  
 }
 
 function operand(operator)
@@ -42,6 +40,9 @@ function operand(operator)
         break;
       case('*'): 
         multiply();
+        break;
+      case('C')
+        clear();
     }
     display(currentTotal)
   }
@@ -54,7 +55,6 @@ function operand(operator)
   
 function addition()
 {
-
   currentTotal = currentTotal + inputNum; 
 }
 
@@ -71,6 +71,12 @@ function subtraction()
 function divide()
 {
   currentTotal = currentTotal / inputNum; 
+}
+
+function clear()
+{
+  firstRun = true;
+  currentTotal = 0;
 }
 
 function display(displayNum) 
