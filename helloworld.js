@@ -1,52 +1,64 @@
-let operands =  ['+', '-', '*', '/'];
-let count = 0;
-
 let currentTotal = 0; //total sum
 let inputNum = 0; //number pressed on calc
 let firstRun = true;
+let operation;
 
 function input(fromButton) 
 {
     if(firstRun)
     {
       currentTotal = (currentTotal * 10) + fromButton;
-      display(currentTotal) 
-      count++;
+      display(currentTotal);  
     }
     else
     {
       inputNum = (inputNum * 10) + fromButton;
       display(inputNum); 
-      count++;
     }
 }
 
+function complete()
+{
+  switch(operation)
+  {
+    case('+'): 
+      addition(); 
+      break;
+    case('-'): 
+      subtraction();
+      break;
+    case('/'):
+      divide();
+      break;
+    case('*'): 
+      multiply();
+  }
+}
+  
 function operand(operator)
 {
-  count = 0; //set count to zero to input next number in ones position 
+  if(operator == 'c')
+  {
+    clear();
+    display(currentTotal);
+  }
+  
+  else if(operator == '=')
+  {
+    complete(); 
+  }
+
+  else
+  {
+    operation = operator;
+    complete();
+  }
   
   if(!firstRun)
   {
-    switch(operator)
-    {
-      case('+'): 
-        addition(); 
-        break;
-      case('-'): 
-        subtraction();
-        break;
-      case('/'):
-        divide();
-        break;
-      case('*'): 
-        multiply();
-        break;
-      //case('C')
-        //clear();
-    }
-    display(currentTotal)
-  }
-    
+    inputNum = 0;
+    display(currentTotal);
+  } 
   else
   {
     firstRun = false;
@@ -77,6 +89,7 @@ function clear()
 {
   firstRun = true;
   currentTotal = 0;
+  inputNum = 0;
 }
 
 function display(displayNum) 
