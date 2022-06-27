@@ -2,9 +2,18 @@ let currentTotal = 0; //total sum
 let inputNum = 0; //number pressed on calc
 let firstRun = true;
 let operation;
+let successfulRun;
 
 function input(fromButton) 
 {
+  /*
+  if(successfulRun)
+  {
+    clear();  
+    successfulRun = false;
+  }
+  */
+  
     if(firstRun)
     {
       currentTotal = (currentTotal * 10) + fromButton;
@@ -33,10 +42,12 @@ function complete()
     case('*'): 
       multiply();
   }
+  //successfulRun = true;
 }
   
 function operand(operator)
 {
+  //successfulRun = false;
   if(operator == 'c')
   {
     clear();
@@ -51,7 +62,11 @@ function operand(operator)
   else
   {
     operation = operator;
-    complete();
+    
+    if(!firstRun)
+    {
+      complete();
+    }
   }
   
   if(!firstRun)
@@ -67,22 +82,24 @@ function operand(operator)
   
 function addition()
 {
-  currentTotal = currentTotal + inputNum; 
+  currentTotal += inputNum; 
 }
 
 function multiply()
 {
-  currentTotal = currentTotal * inputNum; 
+  alert(currentTotal); 
+  alert(inputNum);
+  currentTotal *= inputNum;
 }
 
 function subtraction()
 {
-  currentTotal = currentTotal - inputNum; 
+  currentTotal -= inputNum; 
 }
 
 function divide()
 {
-  currentTotal = currentTotal / inputNum; 
+  currentTotal /= inputNum; 
 }
 
 function clear()
