@@ -42,7 +42,7 @@ function operand(operator)
         multiply();
         break;
       case('C')
-        clear();
+        //clear();
     }
     display(currentTotal)
   }
