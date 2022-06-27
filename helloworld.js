@@ -1,8 +1,7 @@
-let operands =  ['+', '-', '*', '/'];
-
 let currentTotal = 0; //total sum
 let inputNum = 0; //number pressed on calc
 let firstRun = true;
+let operation;
 
 function input(fromButton) 
 {
@@ -18,27 +17,45 @@ function input(fromButton)
     }
 }
 
+function complete()
+{
+  switch(operation)
+  {
+    case('+'): 
+      addition(); 
+      break;
+    case('-'): 
+      subtraction();
+      break;
+    case('/'):
+      divide();
+      break;
+    case('*'): 
+      multiply();
+  }
+}
+  
 function operand(operator)
 {
+  if(operator == 'c')
+  {
+    clear();
+    display(currentTotal);
+  }
+  
+  else if(operator == '=')
+  {
+    complete(); 
+  }
+
+  else
+  {
+    operation = operator;
+    complete();
+  }
+  
   if(!firstRun)
   {
-    switch(operator)
-    {
-      case('+'): 
-        addition(); 
-        break;
-      case('-'): 
-        subtraction();
-        break;
-      case('/'):
-        divide();
-        break;
-      case('*'): 
-        multiply();
-        break;
-      case('c'):
-        clear();
-    }
     inputNum = 0;
     display(currentTotal);
   } 
