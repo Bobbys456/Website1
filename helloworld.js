@@ -41,8 +41,8 @@ function operand(operator)
       case('*'): 
         multiply();
         break;
-      case('C')
-        clear();
+      //case('C')
+        //clear();
     }
     display(currentTotal)
   }
