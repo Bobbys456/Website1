@@ -1,5 +1,4 @@
 let operands =  ['+', '-', '*', '/'];
-let count = 0;
 
 let currentTotal = 0; //total sum
 let inputNum = 0; //number pressed on calc
@@ -10,21 +9,17 @@ function input(fromButton)
     if(firstRun)
     {
       currentTotal = (currentTotal * 10) + fromButton;
-      display(currentTotal) 
-      count++;
+      display(currentTotal);  
     }
     else
     {
       inputNum = (inputNum * 10) + fromButton;
       display(inputNum); 
-      count++;
     }
 }
 
 function operand(operator)
 {
-  count = 0; //set count to zero to input next number in ones position 
-  
   if(!firstRun)
   {
     switch(operator)
@@ -41,12 +36,12 @@ function operand(operator)
       case('*'): 
         multiply();
         break;
-      //case('C')
-        //clear();
+      case('c'):
+        clear();
     }
-    display(currentTotal)
-  }
-    
+    inputNum = 0;
+    display(currentTotal);
+  } 
   else
   {
     firstRun = false;
@@ -77,6 +72,7 @@ function clear()
 {
   firstRun = true;
   currentTotal = 0;
+  inputNum = 0;
 }
 
 function display(displayNum) 
